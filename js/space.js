@@ -27,4 +27,45 @@ class obj{
         telaJogo.fillRect(this.posx, this.posy, this.altura, this.largura, this.cor)
     }
 
-}
+    atualizar() {
+
+
+        this.posx += this.velocidade
+
+        this.posy = Math.max(0, Math.min(this.posx, telaJogo.width - this - this.largura))
+
+    }
+
+    move(direcao){
+
+        const velocidade = 5;
+
+        this.velocidade = direcao === 'esquerda'?-velocidade:velocidade
+    }
+
+    parar(){
+
+
+        this.velocidade = 0
+    }
+
+    perdervida(){
+        this.vidas--
+
+
+        document.getElementById('vidas').innerText = 'Vidas: $(this.vidas)'
+
+        if(this.vida === 0){
+
+            localStorage.setItem('vidas',3)
+
+            exibirModal('Voce perdeu! Game Over', false)
+        }
+
+    }
+
+    }
+
+
+
+
